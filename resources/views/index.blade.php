@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,31 +10,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">E-comnet</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Produk</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('invoices.index') }}">Invoice</a>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Cari produk..." aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Cari</button>
-                </form>
-            </div>
-        </div>
-    </nav>
+    @include('layout.navbar')
 
     <div class="container mt-4">
         <h1 class="mb-4">Daftar Produk</h1>
@@ -102,35 +79,7 @@
         </div>
     </div>
 
-    <footer class="bg-light text-center text-lg-start mt-4">
-        <div class="container p-4">
-            <div class="row">
-                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Kontak Kami</h5>
-                    <p>
-                        Nomor WhatsApp: <a href="https://wa.me/yourwhatsappphonenumber" class="text-primary">+62 123 456 789</a>
-                    </p>
-                </div>
-
-                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Ikuti Kami</h5>
-                    <a href="#" class="btn btn-outline-primary btn-floating m-1" role="button">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="btn btn-outline-primary btn-floating m-1" role="button">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="btn btn-outline-primary btn-floating m-1" role="button">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-center p-3 bg-dark text-white">
-            © 2024 E-comnet Toko Peralatan Komputer
-        </div>
-    </footer>
+    @include('layout.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

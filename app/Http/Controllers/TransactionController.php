@@ -20,10 +20,10 @@ class TransactionController extends Controller
     $amount = $request->product_price;
     $orderId = uniqid();
 
-    // Generate signature
+    
     $signature = hash_hmac('sha256', $merchantCode . $orderId . $amount, $privateKey);
 
-    // Data transaksi yang akan dikirim ke API Tripay
+ 
     $data = [
         'method' => $request->method,
         'merchant_ref' => $orderId,
@@ -39,12 +39,11 @@ class TransactionController extends Controller
                 'quantity' => 1,
             ],
         ],
-        'expired_time' => time() + (24 * 60 * 60), // 1 hari
+        'expired_time' => time() + (24 * 60 * 60), 
         'signature' => $signature,
-        'return_url' => route('invoices.index'), // Redirect ke halaman invoices setelah pembayaran
+        'return_url' => route('invoices.index'), 
     ];
 
-    // Kirim request ke Tripay
     $response = $client->post($url, [
         'headers' => [
             'Authorization' => 'Bearer ' . $apiKey,
@@ -54,21 +53,18 @@ class TransactionController extends Controller
 
     $responseData = json_decode($response->getBody(), true);
 
-    // Jika transaksi berhasil
     if ($responseData['success']) {
-        // Simpan data ke tabel invoices
         Invoice::create([
             'product_id' => $request->product_id,
-            'tripay_reference' => $responseData['data']['reference'], // Referensi transaksi Tripay
+            'tripay_reference' => $responseData['data']['reference'], 
             'buyer_email' => $request->buyer_email,
             'buyer_phone' => $request->buyer_phone,
-            'raw_response' => json_encode($responseData), // Simpan response JSON dari Tripay
+            'raw_response' => json_encode($responseData), 
         ]);
 
-        // Redirect ke URL checkout Tripay untuk menyelesaikan pembayaran
+      
         return redirect($responseData['data']['checkout_url']);
     } else {
-        // Jika terjadi error, kembalikan error
         return back()->withErrors(['error' => $responseData['message']]);
     }
 }
@@ -97,10 +93,9 @@ class TransactionController extends Controller
 
 
 
-    public function showInvoices()
-    {
-     
-        $invoices = Invoice::all();
-        return view('invoices.index', compact('invoices'));
-    }
+    public function showInvoices() {
+    $invoices = Invoice::all(); 
+    return view('invoices', compact('invoices'));
+}
+
 }

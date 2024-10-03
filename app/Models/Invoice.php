@@ -10,6 +10,7 @@ class Invoice extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'product_id',
         'tripay_reference',
         'buyer_email',
