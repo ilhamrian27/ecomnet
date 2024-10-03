@@ -4,7 +4,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [ProductController::class, 'index']); // Mengarahkan root URL ke halaman produk
+Route::get('/', [ProductController::class, 'index']);
 
 Route::post('/create-transaction', [TransactionController::class, 'createTransaction'])->name('create.transaction');
 
