@@ -18,7 +18,7 @@ class Invoice extends Model
         'raw_response',
     ];
 
-    // Relasi ke model Produk (Product)
+   
     public function product()
     {
         return $this->belongsTo(Product::class);
